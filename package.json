@@ -1,8 +1,4 @@
 {
-  "name": "chat_gpt",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
   "scripts": {
     "lint": "eslint './**/*.{js,jsx}'",
     "lint:fix": "eslint './**/*.{js,jsx}' --fix"
