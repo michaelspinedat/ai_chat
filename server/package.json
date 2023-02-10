@@ -4,6 +4,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
+    "start": "node index",
     "dev": "node --watch index"
   },
   "dependencies": {
