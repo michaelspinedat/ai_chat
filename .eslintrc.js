@@ -3,6 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  settings: {
+    react: {
+      version: 'detect',
+      pragma: 'React',
+      module: './client/node_modules/react',
+    },
+  },
   extends: [
     'plugin:react/recommended',
     'airbnb',
@@ -22,5 +29,7 @@ module.exports = {
     'react/prop-types': 'off',
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
+    'no-console': 'off',
   },
+
 }
