@@ -37,7 +37,7 @@ function ChatBot({ prompt }) {
           setResponse('Something went wrong')
         }
       } catch (error) {
-        alert(error)
+        console.error(error)
       }
     }
 

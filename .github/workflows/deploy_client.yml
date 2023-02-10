@@ -1,0 +1,50 @@
+name: Client Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  VITE_SERVER_URI: ${{ secrets.HOST }}
+
+jobs:
+  linter:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: install
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: run linter
+        run: yarn run lint
+  
+  build:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./client
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: Build
+        run: yarn run build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: client/dist
