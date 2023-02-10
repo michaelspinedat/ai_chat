@@ -7,7 +7,7 @@ function ChatStripe({ isAi, text }) {
   return (
     <div className={`wrapper ${isAi && 'ai'}`}>
       <div className="chat">
-        {isAi ? <ChatBot text={text} /> : <ChatUser text={text} />}
+        {isAi ? <ChatBot prompt={text} /> : <ChatUser text={text} />}
       </div>
     </div>
   )

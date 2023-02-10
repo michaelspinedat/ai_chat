@@ -21,6 +21,6 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { packageDir: ['./client/', './server/'] }],
     'react/prop-types': 'off',
     'import/prefer-default-export': 'off',
-    'import/extensions': 'never',
+    // 'import/extensions': 'never',
   },
 }

@@ -1,4 +1,6 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, {
+  useCallback, useRef, useState,
+} from 'react'
 import './index.css'
 import Form from '../Form'
 import { generateUniqueId } from '../../utils'
@@ -17,7 +19,6 @@ function Chat() {
   const handleSubmit = useCallback(
     () => {
       const chatId = generateUniqueId()
-      refContainer.current.scrollTop = refContainer.current.scrollHeight
       setChats((curr) => [...curr, {
         id: chatId, textUser: prompt,
       }])

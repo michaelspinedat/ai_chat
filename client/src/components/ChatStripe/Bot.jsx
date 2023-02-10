@@ -1,19 +1,81 @@
 import React, { useEffect, useState, useRef } from 'react'
 import botIcon from '../../assets/bot.svg'
 import './index.css'
+import { config } from '../../config'
 
-function ChatBot({ text }) {
+function ChatBot({ prompt }) {
+  const [text, setText] = useState('')
   const [response, setResponse] = useState('')
   const loadInterval = useRef(null)
+  const responseIndex = useRef(0)
+  const messageRef = useRef(null)
+
+  const clearLoadInterval = () => {
+    clearInterval(loadInterval.current)
+    loadInterval.current = null
+  }
+
+  useEffect(() => {
+    const getResponse = async () => {
+      try {
+        const res = await fetch(`${config.serverUri}/api/v1/chatgpt`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ prompt }),
+        })
+
+        clearLoadInterval()
+        setText('')
+
+        if (res.ok) {
+          const data = await res.json()
+          const parsedData = data.bot.trim()
+          setResponse(parsedData)
+        } else {
+          setResponse('Something went wrong')
+        }
+      } catch (error) {
+        alert(error)
+      }
+    }
+
+    const timeoutId = setTimeout(() => {
+      getResponse()
+    }, 1000)
+
+    return () => clearTimeout(timeoutId)
+  }, [])
+
+  useEffect(() => {
+    responseIndex.current = 0
+    if (response) {
+      clearLoadInterval()
+      loadInterval.current = setInterval(() => {
+        const index = responseIndex.current
+        if (index < response.length) {
+          setText((curr) => curr.concat(response.charAt(index)))
+          responseIndex.current = index + 1
+        } else {
+          clearInterval(loadInterval.current)
+        }
+      }, 20)
+    }
+  }, [response])
 
   useEffect(() => {
     loadInterval.current = setInterval(() => {
-      setResponse((curr) => (curr === '...' ? '' : curr.concat('.')))
+      setText((curr) => (curr === '...' ? '' : curr.concat('.')))
     }, 300)
     return () => {
-      clearInterval(loadInterval.current)
+      clearLoadInterval()
     }
   }, [])
+
+  useEffect(() => {
+    messageRef.current.scrollIntoView(false)
+  }, [text])
 
   return (
     <>
@@ -23,8 +85,8 @@ function ChatBot({ text }) {
           alt="bot"
         />
       </div>
-      <div className="message">
-        {response}
+      <div className="message" ref={messageRef}>
+        {text}
       </div>
     </>
   )
