@@ -3,7 +3,7 @@ import './index.css'
 import ChatUser from './User'
 import ChatBot from './Bot'
 
-function ChatStripe({ isAi, text }) {
+function ChatStripe ({ isAi, text }) {
   return (
     <div className={`wrapper ${isAi && 'ai'}`}>
       <div className="chat">

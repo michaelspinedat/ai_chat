@@ -2,14 +2,14 @@ import { Configuration, OpenAIApi } from 'openai'
 import { config } from '../config/index.js'
 
 class ChatService {
-  constructor() {
+  constructor () {
     const openaiConfig = new Configuration({
-      apiKey: config.openaiApiKey,
+      apiKey: config.openaiApiKey
     })
     this.openai = new OpenAIApi(openaiConfig)
   }
 
-  async createCompletion(prompt) {
+  async createCompletion (prompt) {
     return this.openai.createCompletion({
       model: 'text-davinci-003',
       prompt,
@@ -17,7 +17,7 @@ class ChatService {
       max_tokens: 3000,
       top_p: 1,
       frequency_penalty: 0.5,
-      presence_penalty: 0,
+      presence_penalty: 0
     })
   }
 }

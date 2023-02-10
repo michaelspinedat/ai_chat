@@ -3,7 +3,7 @@ import botIcon from '../../assets/bot.svg'
 import './index.css'
 import { config } from '../../config'
 
-function ChatBot({ prompt }) {
+function ChatBot ({ prompt }) {
   const [text, setText] = useState('')
   const [response, setResponse] = useState('')
   const loadInterval = useRef(null)
@@ -21,9 +21,9 @@ function ChatBot({ prompt }) {
         const res = await fetch(`${config.serverUri}/api/v1/chatgpt`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ prompt }),
+          body: JSON.stringify({ prompt })
         })
 
         clearLoadInterval()

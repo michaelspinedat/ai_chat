@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import Chat from './components/Chat'
 
-function App() {
+function App () {
   return (
     <div id="app">
       <Chat />

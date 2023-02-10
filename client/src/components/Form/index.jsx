@@ -4,7 +4,7 @@ import sendIcon from '../../assets/send.svg'
 
 const ENTER = 'Enter'
 
-function Form({ value, onChange, onSubmit }) {
+function Form ({ value, onChange, onSubmit }) {
   const handleChange = (e) => {
     const { value: newValue } = e.target
     onChange(newValue)

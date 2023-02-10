@@ -1,35 +1,29 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
+  extends: [
+    'plugin:react/recommended',
+    'standard'
+  ],
   settings: {
     react: {
       version: 'detect',
       pragma: 'React',
-      module: './client/node_modules/react',
-    },
+      module: './client/node_modules/react'
+    }
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-  ],
   overrides: [
   ],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module',
+    sourceType: 'module'
   },
   plugins: [
-    'react',
+    'react'
   ],
   rules: {
-    semi: ['error', 'never'],
-    'import/no-extraneous-dependencies': ['error', { packageDir: ['./client/', './server/'] }],
-    'react/prop-types': 'off',
-    'import/prefer-default-export': 'off',
-    'import/extensions': 'off',
-    'no-console': 'off',
-  },
-
+    'react/prop-types': 'off'
+  }
 }

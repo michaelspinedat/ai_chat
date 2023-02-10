@@ -2,7 +2,7 @@ import React from 'react'
 import userIcon from '../../assets/user.svg'
 import './index.css'
 
-function ChatUser({ text }) {
+function ChatUser ({ text }) {
   return (
     <>
       <div className="profile">
