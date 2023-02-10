@@ -21,6 +21,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: ENV
+        run: echo $VITE_SERVER_URI
       - name: install
         run: yarn install --immutable --immutable-cache --check-cache
       - name: run linter
